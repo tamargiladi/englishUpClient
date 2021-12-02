@@ -12,3 +12,5 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
 //CHANGS!
+//safd
+//sadfadsf
