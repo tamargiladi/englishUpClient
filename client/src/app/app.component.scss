@@ -1,0 +1,21 @@
+
+:host{
+    margin:0;
+    padding:0;
+    font-family: 'Open Sans', sans-serif;
+  header {
+    display:flex;
+    font-size: 48px;
+    font-weight: bolder;
+    justify-content: center;
+    width: 100%;
+    padding:20px;
+    background-color: var(--primary-color);
+    color:white;
+  }
+  .container {
+    display: flex;
+    margin:10px;
+  }
+}
+
