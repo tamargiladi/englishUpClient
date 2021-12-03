@@ -1,13 +1,11 @@
-
-  <ng-container  *ngIf="logged">
+<ng-container  >
     <app-settings-button></app-settings-button>
     <app-teacher-info></app-teacher-info>
     <header class="header">EnglishUp</header>
     <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
-    <button (click)="login()">Hi!</button>
-
   </ng-container>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
 
+<button (click)="login()">Hi!</button>

@@ -4,6 +4,6 @@ import {LoginState} from "../shared/states";
 
 
 export const loginReducer = createReducer<LoginState> (
-  {logged:false},
-  on(login, (state:LoginState)=>({...state,logged:false})),
+  {logged:true},
+  on(login, (state:LoginState)=>({...state,logged:true})),
 );

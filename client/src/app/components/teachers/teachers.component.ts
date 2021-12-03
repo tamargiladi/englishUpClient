@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Teacher} from "../../models";
+import {TeachersService} from "../../services/teachers.service";
+import {loadTeachers, teachersLoaded} from "../../shared/actions";
+import {selectLoaded, selectTeachers} from "../../shared/selectors";
+import {Store} from "@ngrx/store";
+import {AppState, TeachersState} from "../../shared/states";
+
+
 @Component({
   selector: 'app-teachers',
   templateUrl: './teachers.component.html',
@@ -7,44 +14,23 @@ import {Teacher} from "../../models";
 })
 export class TeachersComponent implements OnInit {
 
+  teachers: any[] = [];
+  isLoaded: boolean = false;
 
-  teachers: Teacher[]  = [
-    {
-      firstName:'Tamar',
-      lastName:'Giladi',
-      info:'sldfhls',
-      notifications:1
-    },
-    {
-      firstName:'Shoshana',
-      lastName:'Damari',
-      info:'At a young age, Damari played drums and sang accompaniment for her mother, who performed at family celebrations and gatherings of the Yemenite community in Palestine.[2] At age 14, her first songs were broadcast on the radio.[3] She studied singing and acting at the Shulamit Studio in Tel Aviv, where she met Shlomo Bosmi, the studio manager who became her personal manager. They wed in 1939, when she was only 16.',
-      notifications:6
-    },
-    {
-      firstName:'Alex',
-      lastName:'R',
-      info:'Students',
-      notifications:2
-    },
-    {
-      firstName:'Alex',
-      lastName:'R',
-      info:'Students',
-      notifications:2
-    },
-    {
-      firstName:'Alex',
-      lastName:'R',
-      info:'Students',
-      notifications:2
-    },
-  ]
-
-  constructor() {
+  constructor(private state: Store<AppState>) {
   }
+
   ngOnInit() {
-
+    this.state.dispatch(loadTeachers());
+    // this.state.select(s => s).subscribe(s => console.log(s))
+    this.state.select(selectLoaded)
+      .subscribe((loaded: boolean) => {
+        this.isLoaded = loaded;
+      })
+    this.state.select(selectTeachers)
+      .subscribe(
+        teachers => this.teachers = teachers);
   }
+
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Student} from "../../models";
+import {StudentsService} from "../../services/students.service";
 
 @Component({
   selector: 'app-students',
@@ -8,25 +9,14 @@ import {Student} from "../../models";
 })
 export class StudentsComponent implements OnInit {
 
-  students:Student[] = [
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'TamarTamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-    {firstName:'Tamar',lastName:'Giladi'},
-  ]
+  students:Student[] = []
   selectedStudent:Student | any;
 
 
-  constructor() { }
+  constructor(private readonly service:StudentsService) {
+    this.students = this.service.loadAllStudents();
+    console.log("students:",this.students);
+  }
 
   cols: any[] | undefined;
   exportColumns: any[] | undefined;
@@ -36,6 +26,8 @@ export class StudentsComponent implements OnInit {
       { field: "firstName", header: "First Name" },
       { field: "lastName", header: "Last Name" },
     ];
+
+
 
   }
 
