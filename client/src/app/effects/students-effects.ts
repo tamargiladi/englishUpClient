@@ -16,7 +16,7 @@ export class StudentsEffects {
     ofType('LoadStudents'),
     mergeMap(()=>this.http.get<Student[]>('http://localhost:3000/api/students')),
     tap(students=>{
-      console.log("students:",students)}),
+      console.log("students$:",students)}),
     map(students => studentsLoaded({studentsPayload:students} ))
   ));
 

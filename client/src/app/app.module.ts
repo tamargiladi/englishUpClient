@@ -30,6 +30,11 @@ import {EffectsModule} from "@ngrx/effects";
 import {TeachersEffects} from "./effects";
 import {studentsReducer} from "./reducers/students-reducer";
 import {StudentsEffects} from "./effects/students-effects";
+import {ButtonModule} from "primeng/button";
+import {DialogModule} from "primeng/dialog";
+import { AddTeacherDialogComponent } from './components/teachers/add-teacher-dialog/add-teacher-dialog.component';
+import { AddTeacherFormComponent } from './components/teachers/add-teacher-form/add-teacher-form.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -42,10 +47,13 @@ import {StudentsEffects} from "./effects/students-effects";
     LoginFeatureComponent,
     LoginComponent,
     SettingsComponent,
-    SettingsButtonComponent
+    SettingsButtonComponent,
+    AddTeacherDialogComponent,
+    AddTeacherFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     CardModule,
     MenuModule,
@@ -60,13 +68,15 @@ import {StudentsEffects} from "./effects/students-effects";
     HttpClientModule,
     StoreModule.forRoot({
       login: loginReducer,
-      teachers:teachersReducer,
-      students:studentsReducer
+      teachers: teachersReducer,
+      students: studentsReducer
     }),
-  EffectsModule.forRoot([
-    TeachersEffects,
-    StudentsEffects
-  ])
+    EffectsModule.forRoot([
+      TeachersEffects,
+      StudentsEffects
+    ]),
+    ButtonModule,
+    DialogModule
   ],
   providers: [
   ],

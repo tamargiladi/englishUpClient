@@ -1,4 +1,4 @@
-import {StudentsPayload, TeachersPayload} from "../models";
+import {Student, StudentsPayload, TeachersPayload} from "../models";
 
 export interface LoginState  {
   logged:boolean;
@@ -11,9 +11,13 @@ export interface TeachersState {
 }
 
 export interface StudentsState {
-  students:StudentsPayload,
+  students:Student[]
   loading:boolean;
   loaded:boolean;
+}
+
+export interface UiState {
+  tabLocation:number;
 }
 
 export interface AppState {
