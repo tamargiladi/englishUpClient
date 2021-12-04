@@ -1,11 +1,26 @@
 import { createReducer, on } from '@ngrx/store';
-import {loadTeachers, teachersLoaded} from "../shared/actions";
+import {addTeacher, loadTeachers, teacherAdded, teachersLoaded} from "../shared/actions";
 import {TeachersState} from "../shared/states";
+import {Teacher, TeachersPayload} from "../models";
 
 
 export const teachersReducer = createReducer<TeachersState> (
-  {loaded:true,loading:false},
+  {teachers:{teachers:[]},loaded:false,loading:false},
   on(loadTeachers, (state:TeachersState)=>({...state,loaded:false,loading:true})),
-  on(teachersLoaded, (state:TeachersState)=>({...state,loaded:true,loading:false}))
+  on(teachersLoaded, (state:TeachersState,teachers:TeachersPayload)=>({
+    ...state,
+    teachers,
+    loaded:true,loading:false})),
 
-);
+  on(addTeacher,(state:TeachersState)=>({
+    ...state,
+      loading:true,
+      })),
+  on(addTeacher,(state:TeachersState,teacher)=>({
+    ...state,
+      loading:false,
+      teachers:{teachers:[...state.teachers.teachers,teacher]}
+      }))
+  );
+
+

@@ -1,6 +1,18 @@
-<div *ngFor="let teach of teachers">
-  <p-panel styleClass="panel" header="{{teach.firstName + ' ' + teach.lastName}}"  >
+<div class="container">
+<div class="teachers-container" >
+  <div style="display:block;" *ngFor="let teach of teachers">
+  <p-card  >
+    <h1>{{teach.firstName + ' ' + teach.lastName}}</h1>
     {{teach.info}}
-  </p-panel>
-</div>
+<!--    <div class="button-display">-->
+<!--      <button pButton label="Edit"></button>-->
+<!--      <button pButton label="Delete" class="p-button-danger"></button>-->
+<!--    </div>-->
 
+  </p-card>
+  </div>
+</div>
+<!--<button (click)="addTeacher()" pButton type="button" label="Add"  class="p-button-primary"  ></button>-->
+<!--<app-add-teacher-dialog [display]="this.display"></app-add-teacher-dialog>-->
+  <app-add-teacher-form></app-add-teacher-form>
+</div>

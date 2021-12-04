@@ -1,13 +1,11 @@
-<p-table [value]="students">
+<p-table [value]="students" responsiveLayout="scroll">
   <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let col of cols">
-        {{col.header}}
-      </th>
-
+      <th>Code</th>
+      <th>Name</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" *ngFor="let student of students">
+  <ng-template pTemplate="body" let-student>
     <tr>
       <td>{{student.firstName}}</td>
       <td>{{student.lastName}}</td>

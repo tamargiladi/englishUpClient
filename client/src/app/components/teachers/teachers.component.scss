@@ -1,11 +1,29 @@
-div {
-  margin:10px;
-  width: 500px;
+$gap-margin-size:40px;
 
-  .panel {
-    padding: 20px;
+.container {
+  .teachers-container {
+    position:absolute;
+    width:900px;
+    margin-left:$gap-margin-size;
+    p-card {
+      display:block;
+      margin-top:$gap-margin-size;
+      h1 {
+        color:var(--primary-color);
+      }
+      .button-display {
+        display:flex;
+        flex-direction: row;
+        gap:40px;
+      }
+    }
 
   }
+  app-add-teacher-form {
+    margin-top:$gap-margin-size;
+    background-color:var(--gray-50);
+    position:absolute;
+    right:500px;
 
-
+  }
 }

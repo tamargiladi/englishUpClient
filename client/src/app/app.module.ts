@@ -23,9 +23,18 @@ import {InputTextModule} from 'primeng/inputtext';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsButtonComponent } from './settings/settings-button/settings-button.component';
 import { StoreModule } from '@ngrx/store';
-import {loginReducer} from "./reducers/login-reducer";
 import {teachersReducer} from "./reducers/teachers-reducer";
-
+import {loginReducer} from "./reducers";
+import {HttpClientModule} from "@angular/common/http";
+import {EffectsModule} from "@ngrx/effects";
+import {TeachersEffects} from "./effects";
+import {studentsReducer} from "./reducers/students-reducer";
+import {StudentsEffects} from "./effects/students-effects";
+import {ButtonModule} from "primeng/button";
+import {DialogModule} from "primeng/dialog";
+import { AddTeacherDialogComponent } from './components/teachers/add-teacher-dialog/add-teacher-dialog.component';
+import { AddTeacherFormComponent } from './components/teachers/add-teacher-form/add-teacher-form.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -38,10 +47,13 @@ import {teachersReducer} from "./reducers/teachers-reducer";
     LoginFeatureComponent,
     LoginComponent,
     SettingsComponent,
-    SettingsButtonComponent
+    SettingsButtonComponent,
+    AddTeacherDialogComponent,
+    AddTeacherFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     CardModule,
     MenuModule,
@@ -53,11 +65,18 @@ import {teachersReducer} from "./reducers/teachers-reducer";
     BadgeModule,
     PanelModule,
     InputTextModule,
+    HttpClientModule,
     StoreModule.forRoot({
       login: loginReducer,
-      teachers:teachersReducer,
+      teachers: teachersReducer,
+      students: studentsReducer
     }),
-
+    EffectsModule.forRoot([
+      TeachersEffects,
+      StudentsEffects
+    ]),
+    ButtonModule,
+    DialogModule
   ],
   providers: [
   ],

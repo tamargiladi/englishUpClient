@@ -15,3 +15,7 @@ export interface TeachersPayload {
   teachers:Teacher[]
 }
 
+
+export interface StudentsPayload {
+  studentsPayload:Student[]
+}
